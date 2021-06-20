@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="resource"
+            type="com.niketchoudhary.in.androidcodingchallenge.utility.Resource" />
+
+        <import type="com.niketchoudhary.in.androidcodingchallenge.utility.Status" />
+
+        <variable
+            name="count"
+            type="Integer" />
+
+        <variable
+            name="status"
+            type="Status" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/view_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:resource="@{resource}" />
+
+        <include
+            android:id="@+id/empty_view"
+            layout="@layout/layout_empty_listview"
+            android:visibility="@{count != null &amp;&amp; count == 0 &amp;&amp; resource.status != Status.LOADING? View.VISIBLE : View.GONE,default = gone}"
+            app:text="@{@string/no_items}" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress"
+            tools:listitem="@layout/adapter_layout_shaadi_user_list" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

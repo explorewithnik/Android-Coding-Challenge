@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Android Coding Challenge</string>
+    <string name="button_no_internet">Refresh</string>
+    <string name="match_list">Match List</string>
+    <string name="generalError">Something went wrong!</string>
+    <string name="no_items">No items found</string>
+
 </resources>

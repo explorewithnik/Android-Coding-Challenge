@@ -1,0 +1,94 @@
+/**
+ * Shared file between builds so that they can all use the same dependencies
+ **/
+ext.deps = [:]
+def versions = [:]
+versions.kotlin = "1.5.10"
+versions.androidx = "1.3.0"
+versions.constraint_layout = "2.0.4"
+versions.material = "1.4.0-rc01"
+versions.room = "2.3.0"
+versions.navigation = "2.3.5"
+versions.lifecycle = "2.3.1"
+versions.retrofit = "2.6.1"
+versions.dagger = "2.28.3"
+versions.dagger_android = "2.35.1"
+versions.dagger_android_support = "2.27"
+versions.recyclerview = "1.2.1"
+versions.cardview = "1.0.0"
+versions.core = "1.5.0"
+versions.android_gradle_plugin = '4.2.1'
+versions.gson = "2.8.7"
+versions.glide = "4.11.0"
+versions.paging_runtime = "3.0.0"
+versions.swipe_refresh = "1.1.0"
+
+def deps = [:]
+
+def androidx = [:]
+androidx.app_compat = "androidx.appcompat:appcompat:$versions.support"
+androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
+androidx.cardview = "androidx.cardview:cardview:$versions.cardview"
+androidx.core_utils_ktx = "androidx.core:core-ktx:$versions.core"
+androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+androidx.paging = "androidx.paging:paging-runtime:$versions.paging_runtime"
+
+androidx.room_runtime = "androidx.room:room-runtime:$versions.room"
+androidx.room_compiler = "androidx.room:room-compiler:$versions.room"
+
+androidx.lifecyle_viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+androidx.lifecyle_liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+androidx.lifecyle = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+androidx.lifecyle_savestate_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle"
+androidx.lifecyle_compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+
+androidx.fragment_ktx_navigation = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+androidx.ui_ktx_navigation = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+androidx.dynamic_feature_navigation = "androidx.navigation:navigation-dynamic-features-fragment:$versions.navigation"
+androidx.testing_navigation = "androidx.navigation:navigation-testing:$versions.navigation"
+androidx.safe_args_plugin_navigation = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+
+androidx.swipe_refresh = "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swipe_refresh"
+deps.androidx = androidx
+
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+deps.kotlin = kotlin
+
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+deps.retrofit = retrofit
+
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger_android"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger_android_support"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger_android_support"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger_android_support"
+deps.dagger = dagger
+
+
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.gson = "com.google.code.gson:gson:$versions.gson"
+deps.glide = "com.github.bumptech.glide:glide:$versions.glide"
+deps.material = "com.google.android.material:material:$versions.material"
+
+deps.junit = 'junit:junit:4.13.2'
+deps.test_ext = 'androidx.test.ext:junit:1.1.2'
+deps.test_espresso = 'androidx.test.espresso:espresso-core:3.3.0'
+
+ext.deps = deps
+
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://maven.google.com' }
+}
+
+ext.addRepos = this.&addRepos

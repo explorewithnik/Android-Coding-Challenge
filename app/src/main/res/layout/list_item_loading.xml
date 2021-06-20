@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.niketchoudhary.in.androidcodingchallenge.utility.Status" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="networkStatus"
+            type="com.niketchoudhary.in.androidcodingchallenge.utility.Status" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pagination_loader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:visibility="@{networkStatus==Status.LOADING?View.VISIBLE:View.GONE,default=visible}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/button_no_internet"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_blue_bright"
+            android:visibility="@{networkStatus==Status.ERROR?View.VISIBLE:View.GONE,default=gone}"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="32dp"
+            app:icon="@drawable/refresh"
+            app:iconTint="#2196F3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar"
+            app:rippleColor="#28AB60" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
